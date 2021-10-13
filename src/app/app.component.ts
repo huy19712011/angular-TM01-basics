@@ -7,16 +7,16 @@ import { Component } from '@angular/core';
   template:
   `
     <div class="app">
-      {{ title }}
-      {{ title + '!' }}
-      <div>
-        {{ numberOne }}
-        {{ numberTwo }}
-        {{ numberOne + numberTwo}}
-      </div>
-      <div>
-        {{ isHappy ? ':)' : ':(' }}
-      </div>
+      <h1>{{ title }}</h1>
+      <h1 [innerHtml]="title"></h1>
+      <h1 [innerText]="title"></h1>
+
+      <img [src]="logo" width="5%"/>
+      <img src={{logo}} width="5%"/>
+      <br>
+
+      <input type="text" [value]="name"/>
+      <div>{{name}}</div>
     </div>
   `,
 })
@@ -24,9 +24,10 @@ export class AppComponent {
   
   title: string;
   
-  numberOne: number = 1;
-  numberTwo: number = 2;
-  isHappy: boolean = true;
+  logo: string = 'img/logo.svg';
+  // logo: string = 'img/angular-icon.svg';
+
+  name: string = 'Bkacad';
   
   constructor() {
     this.title = 'Angular Course';
