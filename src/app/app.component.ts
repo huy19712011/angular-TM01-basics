@@ -8,14 +8,14 @@ import { Component } from '@angular/core';
   `
     <div class="app">
       <h1>{{ title }}</h1>
-      <h1 [innerHtml]="title"></h1>
-      <h1 [innerText]="title"></h1>
-
-      <img [src]="logo" width="5%"/>
-      <img src={{logo}} width="5%"/>
+      <button (click)="handleClick($event)">Change name</button>
       <br>
-
-      <input type="text" [value]="name"/>
+      <input 
+        type="text" 
+        [value]="name"
+        (input)="handleInput($event)"
+        (blur)="handleBlur($event)"
+      />
       <div>{{name}}</div>
     </div>
   `,
@@ -31,5 +31,18 @@ export class AppComponent {
   
   constructor() {
     this.title = 'Angular Course';
+  }
+
+  handleClick(event: any) {
+    this.name = "Bkacad";
+  }
+  
+  handleInput(event: any) {
+    this.name = event.target.value;
+  }
+  
+  handleBlur(event: any) {
+    this.name = event.target.value;
+    console.log(event);
   }
 }
