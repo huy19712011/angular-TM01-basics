@@ -8,16 +8,10 @@ import { Component } from '@angular/core';
   `
     <div class="app">
       <h1>{{ title }}</h1>
-      <button (click)="handleClick($event)">Change name</button>
+      <button (click)="handleClick(username.value)">Change name</button>
       <br>
       <input 
-        type="text" 
-        [ngModel] ="name"
-        (ngModelChange)="handleChange($event)"
-      />
-      <input 
-        type="text" 
-        [(ngModel)] ="name"
+        type="text" #username
       />
       <div>{{name}}</div>
     </div>
@@ -36,13 +30,11 @@ export class AppComponent {
     this.title = 'Angular Course';
   }
 
-  handleClick(event: any) {
-    this.name = "Bkacad";
-  }
-  
-  handleChange(value: string) {
+  handleClick(value: string) {
+    console.log(value);
     this.name = value;
   }
+  
   
 
 }
