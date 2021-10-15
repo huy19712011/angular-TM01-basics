@@ -7,15 +7,21 @@ import { Component } from '@angular/core';
   template:
   `
     <div class="app">
-      <h1>{{ title }}</h1>
-      <button (click)="handleClick(username.value)">Change name</button>
-      <br>
       <input 
-        type="text" #username
+        type="text"
+        [value]="name"
+        (input)="handleChange($event)"
       />
-      <div>{{name}}</div>
+      <div *ngIf="name.length > 1">
+        Searching for... {{name}}
+      </div>
+      <ng-template [ngIf]="name.length > 1">
+        <div>
+          Searching for... {{name}}
+        </div>
+      </ng-template>
     </div>
-  `,
+  `
 })
 export class AppComponent {
   
@@ -24,15 +30,14 @@ export class AppComponent {
   logo: string = 'img/logo.svg';
   // logo: string = 'img/angular-icon.svg';
 
-  name: string = 'Bkacad';
+  name: string = '';
   
   constructor() {
     this.title = 'Angular Course';
   }
 
-  handleClick(value: string) {
-    console.log(value);
-    this.name = value;
+  handleChange(event: any) {
+    this.name = event.target.value;
   }
   
   
