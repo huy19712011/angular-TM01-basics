@@ -1,44 +1,63 @@
 import { Component } from '@angular/core';
 
+interface Passenger {
+  id: number,
+  fullname: string,
+  checkedIn: boolean,
+}
 @Component({
   selector: 'app-root',
   // templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  template:
-  `
+  template: `
     <div class="app">
-      <input 
-        type="text"
-        [value]="name"
-        (input)="handleChange($event)"
-      />
-      <div *ngIf="name.length > 1">
-        Searching for... {{name}}
-      </div>
-      <ng-template [ngIf]="name.length > 1">
-        <div>
-          Searching for... {{name}}
-        </div>
-      </ng-template>
+      <h3>Airline Passengers</h3>
+      <ul>
+        <li *ngFor="let passenger of passengers; let i = index">
+          {{i}}: {{passenger.fullname}}
+        </li>
+      </ul>
+      <h3>Airline Passengers</h3>
+      <ul>
+        <ng-template ngFor let-passenger let-i="index" [ngForOf]="passengers">
+          <li>
+            {{i}}: {{passenger.fullname}}
+          </li>
+        </ng-template>
+      </ul>
     </div>
   `
 })
 export class AppComponent {
   
-  title: string;
-  
-  logo: string = 'img/logo.svg';
-  // logo: string = 'img/angular-icon.svg';
+  passengers: Passenger[] = [
+    {
+      id: 1,
+      fullname: 'Stephen',
+      checkedIn: true
+    },
+    {
+      id: 2,
+      fullname: 'Rose',
+      checkedIn: false
+    },
+    {
+      id: 3,
+      fullname: 'James',
+      checkedIn: true
+    },
+    {
+      id: 1,
+      fullname: 'Louise',
+      checkedIn: true
+    },
+    {
+      id: 1,
+      fullname: 'Tina',
+      checkedIn: false
+    },
+  ];
 
-  name: string = '';
-  
-  constructor() {
-    this.title = 'Angular Course';
-  }
-
-  handleChange(event: any) {
-    this.name = event.target.value;
-  }
   
   
 
