@@ -34,7 +34,18 @@ import { Passenger } from '../../models/passenger.interface';
 })
 export class PassengerDashboardComponent implements OnInit {
 
-  passengers: Passenger[] = [
+  // passengers: Passenger[];
+  
+  passengers: Passenger[] = [];
+  // passengers!: Passenger[];
+  
+  constructor() {}
+
+  ngOnInit(): void {
+
+    console.log('ngOnInit...');
+    
+    this.passengers = [
     {
       id: 1,
       fullname: 'Stephen',
@@ -71,10 +82,7 @@ export class PassengerDashboardComponent implements OnInit {
       children: null,
     },
   ];
-  
-  constructor() { }
-
-  ngOnInit(): void {
   }
+
 
 }
