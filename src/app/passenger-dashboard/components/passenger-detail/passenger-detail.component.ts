@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Passenger } from './../../models/passenger.interface';
 
 @Component({
@@ -44,7 +44,7 @@ import { Passenger } from './../../models/passenger.interface';
 
   `
 })
-export class PassengerDetailComponent implements OnInit {
+export class PassengerDetailComponent implements OnInit, OnChanges {
 
   @Input()
   detail!: Passenger;
@@ -58,8 +58,16 @@ export class PassengerDetailComponent implements OnInit {
   editing: boolean = false;
   
   constructor() { }
-
+  
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.detail) {
+      this.detail = Object.assign({}, changes.detail.currentValue);
+    }
+    console.log('ngOnChanges');
+  }
+  
   ngOnInit(): void {
+    console.log('ngOnInit');
   }
 
   toggleEdit() {
