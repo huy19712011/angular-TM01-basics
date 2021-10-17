@@ -63,11 +63,11 @@ export class PassengerDetailComponent implements OnInit, OnChanges {
     if (changes.detail) {
       this.detail = Object.assign({}, changes.detail.currentValue);
     }
-    console.log('ngOnChanges');
+    // console.log('ngOnChanges');
   }
   
   ngOnInit(): void {
-    console.log('ngOnInit');
+    // console.log('ngOnInit');
   }
 
   toggleEdit() {
