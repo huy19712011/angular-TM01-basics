@@ -1,10 +1,12 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable, of } from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 
 import { Passenger } from './models/passenger.interface';
+
+const URL_API: string = 'http://localhost:3000/passengers';
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +20,37 @@ export class PassengerDashboardService {
   getPassengers(): Observable<Passenger[]> {
     
     return this.http
-      .get<Passenger[]>('http://localhost:3000/passengers')
+      .get<Passenger[]>(URL_API)
       .pipe(
         tap(data => console.log(data)),
         catchError(this.handleError<Passenger[]>('getPassengers', [])),
+      );
+  }
+
+  updatePassenger(passenger: Passenger): Observable<Passenger> {
+    
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    let options = {
+      headers: headers,
+    };
+
+    return this.http.put<Passenger>(`${URL_API}/${passenger.id}`, passenger, options)
+      .pipe(
+        tap(data => console.log(data)),
+        catchError(this.handleError<Passenger>('updatePassenger', passenger)),
+      );
+
+  }
+
+  deletePassenger(passenger: Passenger): Observable<Passenger> {
+    
+    return this.http.delete<Passenger>(`${URL_API}/${passenger.id}`)
+      .pipe(
+        tap(data => console.log("Deleted: ", data)),
+        catchError(this.handleError<Passenger>('removePassenger')),
       );
   }
 

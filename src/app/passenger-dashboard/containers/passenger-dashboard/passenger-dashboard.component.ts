@@ -41,35 +41,57 @@ export class PassengerDashboardComponent implements OnInit {
 
     console.log('ngOnInit...');
     
-    this.passengerDashboardService.getPassengers()
+    this.passengerDashboardService
+      .getPassengers()
       .subscribe((data: Passenger[]) => this.passengers = data);
   }
 
   handleEdit(event: Passenger) {
+
+    this.passengerDashboardService
+      .updatePassenger(event)
+      .subscribe((data: Passenger) => {
+        this.passengers = this.passengers.map((passenger: Passenger) => {
+          if (passenger.id === event.id) {
+            passenger = Object.assign({}, passenger, event);
+            // console.log(event);
+            // console.log(data);
+          }
+
+          return passenger;
+        })
+      });
     
-    this.passengers = this.passengers
-                            .map((passenger: Passenger) => {
+    // this.passengers = this.passengers
+    //                         .map((passenger: Passenger) => {
 
-                              if (passenger.id === event.id) {
-                                // shallow copy (2 ways)
-                                passenger = Object.assign({}, passenger, event);
-                                //passenger = {...event};
+    //                           if (passenger.id === event.id) {
+    //                             // shallow copy (2 ways)
+    //                             passenger = Object.assign({}, passenger, event);
+    //                             //passenger = {...event};
 
-                                // deep copy (1 way)
-                                //passenger = JSON.parse(JSON.stringify(event));
-                              }
+    //                             // deep copy (1 way)
+    //                             //passenger = JSON.parse(JSON.stringify(event));
+    //                           }
                               
-                              return passenger;
-                            });
+    //                           return passenger;
+    //                         });
 
                             //console.log(this.passengers);
   }
   
   handleRemove(event: Passenger) {
 
-    this.passengers = this.passengers
-                            .filter((passenger: Passenger) => {
-                              return passenger.id != event.id;
-                            });
+    this.passengerDashboardService
+      .deletePassenger(event)
+      .subscribe((data: Passenger) => {
+        this.passengers = this.passengers
+          .filter((passenger: Passenger) => passenger.id != event.id)
+      });
+    
+    // this.passengers = this.passengers
+    //                         .filter((passenger: Passenger) => {
+    //                           return passenger.id != event.id;
+    //                         });
   }
 }
