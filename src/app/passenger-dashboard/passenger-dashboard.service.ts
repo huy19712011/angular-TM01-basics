@@ -43,6 +43,12 @@ export class PassengerDashboardService {
         catchError(this.handleError<Passenger>('updatePassenger', passenger)),
       );
 
+    // return this.http.patch<Passenger>(`${URL_API}/${passenger.id}`, JSON.stringify({fullname: passenger.fullname}), options)
+    //   .pipe(
+    //     tap(data => console.log(data)),
+    //     catchError(this.handleError<Passenger>('updatePassenger', passenger)),
+    //   );
+
   }
 
   deletePassenger(passenger: Passenger): Observable<Passenger> {
