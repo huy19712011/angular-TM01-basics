@@ -27,6 +27,16 @@ export class PassengerDashboardService {
       );
   }
 
+  getPassenger(id: number): Observable<Passenger> {
+    
+    return this.http
+      .get<Passenger>(`${URL_API}/${id}`)
+      .pipe(
+        tap(data => console.log(data)),
+        catchError(this.handleError<Passenger>('getPassenger')),
+      );
+  }
+
   updatePassenger(passenger: Passenger): Observable<Passenger> {
     
     let headers = new HttpHeaders({
