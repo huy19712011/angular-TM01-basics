@@ -18,9 +18,9 @@ import { Baggage } from '../../models/baggage.interface';
           required
           #fullname="ngModel"
           [ngModel]="detail?.fullname">
-        <div *ngIf="fullname.errors?.required $$ fullname.dirty" class="error">
+        <div *ngIf="fullname.errors?.required && fullname.dirty" class="error">
           Passenger name is required
-        </div>  
+        </div>
       </div>
       
       <div>
@@ -31,8 +31,8 @@ import { Baggage } from '../../models/baggage.interface';
           required
           #id="ngModel"
           [ngModel]="detail?.id">
-        <div *ngIf="id.errors?.required $$ id.dirty" class="error">
-          Passenger id is required
+        <div *ngIf="id.errors?.required && id.dirty" class="error">
+          Passenger ID is required
         </div>
       </div>
 
