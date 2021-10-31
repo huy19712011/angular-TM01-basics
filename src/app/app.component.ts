@@ -8,12 +8,28 @@ import { Component } from '@angular/core';
     <div class="app">
       <!-- <passenger-dashboard></passenger-dashboard> -->
       <!-- <passenger-viewer></passenger-viewer> -->
-      <a routerLink="/">
-        Home
-      </a>
-      <a routerLink="/oops">
-        404
-      </a>
+      <nav class="nav">
+        <a 
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}"
+          >
+          Home
+        </a>
+        <a 
+          routerLink="/oops"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}"
+          >
+          404
+        </a>
+        <!-- <a 
+          routerLink="/oops2"
+          routerLinkActive="active"
+          >
+          404
+        </a> -->
+      </nav>
       <router-outlet></router-outlet>
     </div>
   `
