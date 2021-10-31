@@ -7,7 +7,8 @@ import { Component } from '@angular/core';
   template: `
     <div class="app">
       <!-- <passenger-dashboard></passenger-dashboard> -->
-      <passenger-viewer></passenger-viewer>
+      <!-- <passenger-viewer></passenger-viewer> -->
+      <router-outlet></router-outlet>
     </div>
   `
 })
