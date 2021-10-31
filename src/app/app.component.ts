@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
 
+interface Nav {
+  link: string,
+  name: string,
+  exact: boolean
+}
+
 @Component({
   selector: 'app-root',
   // templateUrl: './app.component.html',
@@ -9,26 +15,13 @@ import { Component } from '@angular/core';
       <!-- <passenger-dashboard></passenger-dashboard> -->
       <!-- <passenger-viewer></passenger-viewer> -->
       <nav class="nav">
-        <a 
-          routerLink="/"
+        <a *ngFor="let item of nav"
+          [routerLink]="item.link"
           routerLinkActive="active"
-          [routerLinkActiveOptions]="{exact: true}"
+          [routerLinkActiveOptions]="{exact: item.exact}"
           >
-          Home
+          {{item.name}}
         </a>
-        <a 
-          routerLink="/oops"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{exact: true}"
-          >
-          404
-        </a>
-        <!-- <a 
-          routerLink="/oops2"
-          routerLinkActive="active"
-          >
-          404
-        </a> -->
       </nav>
       <router-outlet></router-outlet>
     </div>
@@ -36,7 +29,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   
-  
+  nav: Nav[] = [
+    {
+      link: '/',
+      name: 'Home',
+      exact: true,
+    },
+    {
+      link: '/oops',
+      name: '404',
+      exact: false,
+    },
+  ];
 
   
   
