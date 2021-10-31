@@ -8,6 +8,12 @@ import { Component } from '@angular/core';
     <div class="app">
       <!-- <passenger-dashboard></passenger-dashboard> -->
       <!-- <passenger-viewer></passenger-viewer> -->
+      <a routerLink="/">
+        Home
+      </a>
+      <a routerLink="/oops">
+        404
+      </a>
       <router-outlet></router-outlet>
     </div>
   `
